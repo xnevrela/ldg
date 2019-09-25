@@ -1,9 +1,7 @@
 package cz.xnevrela.ldg.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -24,14 +22,17 @@ public class ContactRequest implements Serializable {
     @Size(max = 50)
     @Pattern(regexp = "[a-zA-Z]*")
     private String surname;
+    @NotBlank
     @Size(max = 50)
     @Pattern(regexp = "\\w*")
     private String policyNumber;
 
     // Request
+    @NotBlank
     @Size(max = 2000)
     @Column(length = 2000)
     private String request;
+    @NotNull
     @ManyToOne
     private ContactRequestType requestType;
 
