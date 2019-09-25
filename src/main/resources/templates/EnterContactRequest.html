@@ -14,11 +14,11 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-            <h1>Contact us</h1>
+            <h1 th:text="#{EnterContactRequest.header}"></h1>
             <form action="#" th:action="@{/contact}" th:object="${contactRequest}" method="post">
 
                 <div class="form-group">
-                    <label for="requestType">Kind of request</label>
+                    <label for="requestType" th:text="#{contactRequest.requestType}"></label>
                     <select th:field="*{requestType}" id="requestType" class="form-control"
                             th:classappend="${#fields.hasErrors('requestType')} ? 'is-invalid' : ''">
                         <option th:each="requestType : ${requestTypes}" th:value="${requestType.id}" th:text="${requestType.code}">
@@ -28,39 +28,39 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="policyNumber">Policy number</label>
-                    <input type="text" th:field="*{policyNumber}" id="policyNumber" placeholder="Policy number"
-                           class="form-control"
-                           th:classappend="${#fields.hasErrors('policyNumber')} ? 'is-invalid' : ''">
+                    <label for="policyNumber" th:text="#{contactRequest.policyNumber}"></label>
+                    <input type="text" th:field="*{policyNumber}" id="policyNumber" th:placeholder="#{contactRequest.policyNumber}"
+                           class="form-control" th:classappend="${#fields.hasErrors('policyNumber')} ? 'is-invalid' : ''"
+                            required="required">
                     <div th:if="${#fields.hasErrors('policyNumber')}" th:errors="*{policyNumber}" class="invalid-feedback"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" th:field="*{name}" id="name" placeholder="Name" class="form-control"
-                           th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''">
+                    <label for="name" th:text="#{contactRequest.name}"></label>
+                    <input type="text" th:field="*{name}" id="name" th:placeholder="#{contactRequest.name}"
+                           class="form-control" th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''">
                     <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="surname">Surname</label>
-                    <input type="text" th:field="*{surname}" id="surname" placeholder="Surname"
-                           class="form-control"
-                           th:classappend="${#fields.hasErrors('surname')} ? 'is-invalid' : ''">
+                    <label for="surname" th:text="#{contactRequest.surname}"></label>
+                    <input type="text" th:field="*{surname}" id="surname" th:placeholder="#{contactRequest.surname}"
+                           class="form-control" th:classappend="${#fields.hasErrors('surname')} ? 'is-invalid' : ''">
                     <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="invalid-feedback"></div>
                 </div>
 
 
                 <div class="form-group">
-                    <label for="request">Request</label>
-                    <textarea rows="10" th:field="*{request}" id="request" placeholder="Request"
-                              class="form-control"
-                              th:classappend="${#fields.hasErrors('request')} ? 'is-invalid' : ''">
+                    <label for="request" th:text="#{contactRequest.request}"></label>
+                    <span class="float-right">0 / 2000</span>
+                    <textarea rows="10" th:field="*{request}" id="request" th:placeholder="#{contactRequest.request}"
+                            class="form-control" th:classappend="${#fields.hasErrors('request')} ? 'is-invalid' : ''"
+                            maxlength="2000" required="required">
                     </textarea>
                     <div th:if="${#fields.hasErrors('request')}" th:errors="*{request}" class="invalid-feedback"></div>
                 </div>
 
-                <input type="submit" value="SEND REQUEST" class="btn btn-primary float-right">
+                <input type="submit" th:value="#{EnterContactRequest.submit}" class="btn btn-primary float-right">
             </form>
         </div>
     </div>
