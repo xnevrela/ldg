@@ -1,5 +1,8 @@
 package cz.xnevrela.ldg.domain;
 
+import cz.xnevrela.ldg.validation.AlphaNumeric;
+import cz.xnevrela.ldg.validation.Alphabetic;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -17,14 +20,14 @@ public class ContactRequest implements Serializable {
 
     // Customer
     @Size(max = 50)
-    @Pattern(regexp = "[a-zA-Z]*")
+    @Alphabetic
     private String name;
     @Size(max = 50)
-    @Pattern(regexp = "[a-zA-Z]*")
+    @Alphabetic
     private String surname;
     @NotBlank
     @Size(max = 50)
-    @Pattern(regexp = "\\w*")
+    @AlphaNumeric
     private String policyNumber;
 
     // Request
