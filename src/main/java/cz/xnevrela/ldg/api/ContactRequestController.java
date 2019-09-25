@@ -42,13 +42,8 @@ public class ContactRequestController {
             log.trace("User opened enter contact request form");
         }
 
-        ModelAndView model = new ModelAndView();
-
-        model.addObject("requestTypes", requestTypeRepository.findAll());
-        model.addObject("contactRequest", new ContactRequest());
-        model.setViewName("EnterContactRequest");
-
-        return model;
+        return createEnterContactRequestBaseModel()
+            .addObject("contactRequest", new ContactRequest());
     }
 
     /**
@@ -67,7 +62,7 @@ public class ContactRequestController {
                 log.debug("Insert contact request failed %s", result.getAllErrors());
             }
 
-            return new ModelAndView("EnterContactRequest", model.asMap());
+            return createEnterContactRequestBaseModel();
         }
 
         contactRequestRepository.save(contactRequest);
@@ -75,9 +70,16 @@ public class ContactRequestController {
             log.trace("User inserted new contact request");
         }
 
-        // reset contact request
-        model.addAttribute("contactRequest", new ContactRequest());
-        return new ModelAndView("EnterContactRequest", model.asMap());
+        return enterContactRequest();
     }
 
+    /**
+     * Create base model for a "EnterContactRequest" view initialized with static form data content
+     *
+     * @return EnterContactRequest base model
+     */
+    private ModelAndView createEnterContactRequestBaseModel() {
+        return new ModelAndView("EnterContactRequest")
+            .addObject("requestTypes", requestTypeRepository.findAll());
+    }
 }

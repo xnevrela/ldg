@@ -18,6 +18,14 @@
             <form action="#" th:action="@{/contact}" th:object="${contactRequest}" method="post">
 
                 <div class="form-group">
+                    <label for="requestType">Kind of request</label>
+                    <select th:field="*{requestType}" id="requestType" class="form-control">
+                        <option th:each="requestType : ${requestTypes}" th:value="${requestType.id}" th:text="${requestType.code}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label for="policyNumber">Policy number</label>
                     <input type="text" th:field="*{policyNumber}" id="policyNumber" placeholder="Policy number"
                            class="form-control">
