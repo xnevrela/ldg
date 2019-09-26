@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/HeadFragment.html :: head">
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <h1 th:text="#{error.header}"></h1>
+            <a href="/" th:text="#{error.home}"></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
