@@ -70,7 +70,7 @@ public class ContactRequestController {
             log.trace("User inserted new contact request");
         }
 
-        return enterContactRequest();
+        return new ModelAndView("redirect:/contact");
     }
 
     /**
