@@ -19,8 +19,11 @@ import javax.validation.Valid;
  * Handles {@link ContactRequest} endpoint operations
  */
 @Controller
-@RequestMapping("contact")
+@RequestMapping(ContactRequestController.ENDPOINT)
 public class ContactRequestController {
+    public static final String ENDPOINT = "/contact";
+
+    public static final String ENTER_VIEW = "EnterContactRequest";
     private static final Logger log = LoggerFactory.getLogger(ContactRequestController.class);
 
     private ContactRequestRepository contactRequestRepository;
@@ -70,7 +73,7 @@ public class ContactRequestController {
             log.trace("User inserted new contact request");
         }
 
-        return new ModelAndView("redirect:/contact");
+        return new ModelAndView("redirect:" + ENDPOINT);
     }
 
     /**
@@ -79,7 +82,7 @@ public class ContactRequestController {
      * @return EnterContactRequest base model
      */
     private ModelAndView createEnterContactRequestBaseModel() {
-        return new ModelAndView("EnterContactRequest")
+        return new ModelAndView(ENTER_VIEW)
             .addObject("requestTypes", requestTypeRepository.findAll());
     }
 }

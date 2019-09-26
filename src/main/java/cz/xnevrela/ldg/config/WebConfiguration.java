@@ -1,5 +1,6 @@
 package cz.xnevrela.ldg.config;
 
+import cz.xnevrela.ldg.api.ContactRequestController;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.Validator;
@@ -37,6 +38,6 @@ public class WebConfiguration implements WebMvcConfigurer {
      */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("forward:/contact");
+        registry.addViewController("/").setViewName("forward:" + ContactRequestController.ENDPOINT);
     }
 }
